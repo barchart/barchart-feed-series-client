@@ -35,6 +35,7 @@ import com.barchart.feed.api.model.meta.Instrument;
 import com.barchart.feed.api.model.meta.Metadata;
 import com.barchart.feed.api.model.meta.id.ExchangeID;
 import com.barchart.feed.api.model.meta.id.InstrumentID;
+import com.barchart.feed.api.model.meta.id.VendorID;
 import com.barchart.feed.api.series.services.HistoricalObserver;
 import com.barchart.feed.api.series.services.HistoricalResult;
 import com.barchart.feed.api.series.services.Query;
@@ -848,6 +849,12 @@ public class FauxMarketService implements MarketService {
                 // TODO Auto-generated method stub
                 return null;
             }
+
+			@Override
+			public Map<VendorID, String> vendorSymbols() {
+				// TODO Auto-generated method stub
+				return null;
+			}
             
         };
     }
