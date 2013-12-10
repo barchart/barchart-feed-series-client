@@ -23,20 +23,22 @@ import com.barchart.feed.api.consumer.MetadataService.Result;
 import com.barchart.feed.api.model.data.Book;
 import com.barchart.feed.api.model.data.Market;
 import com.barchart.feed.api.model.meta.Instrument;
+import com.barchart.feed.client.provider.BarchartMarketProvider;
 import com.barchart.feed.series.services.BarchartSeriesProvider;
+import com.barchart.feed.series.services.BarchartHistoricalService;
 
 public class TestDataSeriesClient {
 	
 	private static final String[] insts = {"ESZ13", "AAPL"};
 	
 	private static ConsumerAgent agent1;
-	//private static BarchartMarketProvider provider;
+	private static BarchartMarketProvider provider;
 	
 	
 	public TestDataSeriesClient() throws InterruptedException {
-	//	provider = new BarchartMarketProvider("dray", "dray");
+		provider = new BarchartMarketProvider("dray", "dray");
 		
-		//new BarchartSeriesProvider(provider);
+		//new BarchartSeriesProvider(provider, new HistoricalService<HistoricalResult>("dray", "dray"));
 		
 		/////////////////
 		
