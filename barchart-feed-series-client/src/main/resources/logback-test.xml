@@ -28,7 +28,7 @@
 	<logger name="org.apache" level="off" />
 
 	<logger name="com.barchart.feed"
-		level="debug" />
+		level="error" />
 
 	
 
