@@ -11,8 +11,10 @@ import com.barchart.feed.api.series.services.Query;
 import com.barchart.feed.api.series.temporal.Period;
 import com.barchart.feed.api.series.temporal.PeriodType;
 import com.barchart.feed.client.provider.BarchartMarketProvider;
+import com.barchart.feed.series.services.BarchartFeedService;
 import com.barchart.feed.series.services.BarchartHistoricalService;
 import com.barchart.feed.series.services.BarchartSeriesProvider;
+import com.barchart.feed.series.services.FauxHistoricalService;
 import com.barchart.feed.series.services.QueryBuilder;
 
 /**
@@ -31,7 +33,8 @@ public class TestSeriesProviderClient {
 	public void testInstantiate() {
 		BarchartMarketProvider marketService = new BarchartMarketProvider("dray", "dray");
 		BarchartHistoricalService<HistoricalResult> historicalService = new BarchartHistoricalService<HistoricalResult>("dray", "dray");
-		provider = new BarchartSeriesProvider(marketService, historicalService);
+		BarchartFeedService feed = new BarchartFeedService(marketService, historicalService);
+		provider = new BarchartSeriesProvider(feed);
 	}
 	
 	public Observable<TimeSeries<TimePoint>> testSubscribe() {
