@@ -2,10 +2,10 @@ package com.barchart.feed.series.client.services;
 
 import org.joda.time.DateTime;
 
-import rx.Observable;
+import rx.Observer;
 
-import com.barchart.feed.api.series.TimePoint;
-import com.barchart.feed.api.series.TimeSeries;
+import com.barchart.feed.api.series.Span;
+import com.barchart.feed.api.series.TimeSeriesObservable;
 import com.barchart.feed.api.series.services.HistoricalResult;
 import com.barchart.feed.api.series.services.Query;
 import com.barchart.feed.api.series.temporal.Period;
@@ -14,7 +14,6 @@ import com.barchart.feed.client.provider.BarchartMarketProvider;
 import com.barchart.feed.series.services.BarchartFeedService;
 import com.barchart.feed.series.services.BarchartHistoricalService;
 import com.barchart.feed.series.services.BarchartSeriesProvider;
-import com.barchart.feed.series.services.FauxHistoricalService;
 import com.barchart.feed.series.services.QueryBuilder;
 
 /**
@@ -37,7 +36,7 @@ public class TestSeriesProviderClient {
 		provider = new BarchartSeriesProvider(feed);
 	}
 	
-	public Observable<TimeSeries<TimePoint>> testSubscribe() {
+	public TimeSeriesObservable testSubscribe() {
 		Query query = QueryBuilder.create().symbol("ESZ13").period(new Period(PeriodType.MINUTE, 1)).start(new DateTime().minusDays(3)).build();
 		return provider.fetch(query);
 	}
@@ -58,8 +57,17 @@ public class TestSeriesProviderClient {
 		}
 		
 		System.out.println("now testing subscribe");
-		Observable<TimeSeries<TimePoint>> observable = test.testSubscribe();
-		if(observable != null)
+		TimeSeriesObservable observable = test.testSubscribe();
+		if(observable != null) {
 			observable.count(); //Do nothing
+			observable.subscribe(new Observer<Span>() {
+			    @Override public void onCompleted() {}
+			    @Override public void onError(Throwable e) {}
+			    @Override
+                public void onNext(Span args) {
+                    System.out.println("TimeSeries got update");
+                }
+			});
+		}
 	}
 }
