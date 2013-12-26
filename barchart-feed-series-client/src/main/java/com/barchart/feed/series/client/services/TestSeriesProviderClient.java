@@ -6,15 +6,15 @@ import rx.Observer;
 
 import com.barchart.feed.api.series.Span;
 import com.barchart.feed.api.series.TimeSeriesObservable;
-import com.barchart.feed.api.series.services.HistoricalResult;
-import com.barchart.feed.api.series.services.Query;
+import com.barchart.feed.api.series.service.HistoricalResult;
+import com.barchart.feed.api.series.service.Query;
 import com.barchart.feed.api.series.temporal.Period;
 import com.barchart.feed.api.series.temporal.PeriodType;
 import com.barchart.feed.client.provider.BarchartMarketProvider;
-import com.barchart.feed.series.services.BarchartFeedService;
-import com.barchart.feed.series.services.BarchartHistoricalService;
-import com.barchart.feed.series.services.BarchartSeriesProvider;
-import com.barchart.feed.series.services.QueryBuilder;
+import com.barchart.feed.series.service.BarchartFeedService;
+import com.barchart.feed.series.service.BarchartHistoricalService;
+import com.barchart.feed.series.service.BarchartSeriesProvider;
+import com.barchart.feed.series.service.QueryBuilder;
 
 /**
  * <pre>
