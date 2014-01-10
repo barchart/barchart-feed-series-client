@@ -4,17 +4,17 @@ import org.joda.time.DateTime;
 
 import rx.Observer;
 
+import com.barchart.feed.api.series.Period;
+import com.barchart.feed.api.series.PeriodType;
 import com.barchart.feed.api.series.Span;
 import com.barchart.feed.api.series.TimeSeriesObservable;
+import com.barchart.feed.api.series.network.Query;
 import com.barchart.feed.api.series.service.HistoricalResult;
-import com.barchart.feed.api.series.service.Query;
-import com.barchart.feed.api.series.temporal.Period;
-import com.barchart.feed.api.series.temporal.PeriodType;
 import com.barchart.feed.client.provider.BarchartMarketProvider;
+import com.barchart.feed.series.network.BarchartSeriesProvider;
+import com.barchart.feed.series.network.QueryBuilderImpl;
 import com.barchart.feed.series.service.BarchartFeedService;
 import com.barchart.feed.series.service.BarchartHistoricalService;
-import com.barchart.feed.series.service.BarchartSeriesProvider;
-import com.barchart.feed.series.service.QueryBuilder;
 
 /**
  * <pre>
@@ -37,7 +37,7 @@ public class TestSeriesProviderClient {
 	}
 	
 	public TimeSeriesObservable testSubscribe() {
-		Query query = QueryBuilder.create().symbol("ESZ13").period(new Period(PeriodType.MINUTE, 1)).start(new DateTime().minusDays(3)).build();
+		Query query = QueryBuilderImpl.create().symbol("ESZ13").period(new Period(PeriodType.MINUTE, 1)).start(new DateTime().minusDays(3)).build();
 		return provider.fetch(query);
 	}
 	
