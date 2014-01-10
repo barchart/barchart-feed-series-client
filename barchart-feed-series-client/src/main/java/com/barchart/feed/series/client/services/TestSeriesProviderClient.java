@@ -4,17 +4,17 @@ import org.joda.time.DateTime;
 
 import rx.Observer;
 
+import com.barchart.feed.api.series.Period;
+import com.barchart.feed.api.series.PeriodType;
 import com.barchart.feed.api.series.Span;
-import com.barchart.feed.api.series.TimeSeriesObservable;
+import com.barchart.feed.api.series.network.NetworkObservable;
+import com.barchart.feed.api.series.network.Query;
 import com.barchart.feed.api.series.service.HistoricalResult;
-import com.barchart.feed.api.series.service.Query;
-import com.barchart.feed.api.series.temporal.Period;
-import com.barchart.feed.api.series.temporal.PeriodType;
 import com.barchart.feed.client.provider.BarchartMarketProvider;
+import com.barchart.feed.series.network.BarchartSeriesProvider;
+import com.barchart.feed.series.network.QueryBuilderImpl;
 import com.barchart.feed.series.service.BarchartFeedService;
 import com.barchart.feed.series.service.BarchartHistoricalService;
-import com.barchart.feed.series.service.BarchartSeriesProvider;
-import com.barchart.feed.series.service.QueryBuilder;
 
 /**
  * <pre>
@@ -36,8 +36,8 @@ public class TestSeriesProviderClient {
 		provider = new BarchartSeriesProvider(feed);
 	}
 	
-	public TimeSeriesObservable testSubscribe() {
-		Query query = QueryBuilder.create().symbol("ESZ13").period(new Period(PeriodType.MINUTE, 1)).start(new DateTime().minusDays(3)).build();
+	public NetworkObservable testSubscribe() {
+		Query query = QueryBuilderImpl.create().symbol("ESZ13").period(new Period(PeriodType.MINUTE, 1)).start(new DateTime().minusDays(3)).build();
 		return provider.fetch(query);
 	}
 	
@@ -57,17 +57,17 @@ public class TestSeriesProviderClient {
 		}
 		
 		System.out.println("now testing subscribe");
-		TimeSeriesObservable observable = test.testSubscribe();
+		NetworkObservable observable = test.testSubscribe();
 		if(observable != null) {
-			observable.count(); //Do nothing
-			observable.subscribe(new Observer<Span>() {
-			    @Override public void onCompleted() {}
-			    @Override public void onError(Throwable e) {}
-			    @Override
-                public void onNext(Span args) {
-                    System.out.println("TimeSeries got update");
-                }
-			});
+//			observable.count(); //Do nothing
+//			observable.subscribe(new Observer<Span>() {
+//			    @Override public void onCompleted() {}
+//			    @Override public void onError(Throwable e) {}
+//			    @Override
+//                public void onNext(Span args) {
+//                    System.out.println("TimeSeries got update");
+//                }
+//			});
 		}
 	}
 }
