@@ -24,8 +24,6 @@ import com.barchart.feed.api.model.data.Book;
 import com.barchart.feed.api.model.data.Market;
 import com.barchart.feed.api.model.meta.Instrument;
 import com.barchart.feed.client.provider.BarchartMarketProvider;
-import com.barchart.feed.series.network.BarchartSeriesProvider;
-import com.barchart.feed.series.service.BarchartHistoricalService;
 
 public class TestDataSeriesClient {
 	

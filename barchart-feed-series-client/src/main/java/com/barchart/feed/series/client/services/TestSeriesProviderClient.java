@@ -2,11 +2,8 @@ package com.barchart.feed.series.client.services;
 
 import org.joda.time.DateTime;
 
-import rx.Observer;
-
 import com.barchart.feed.api.series.Period;
 import com.barchart.feed.api.series.PeriodType;
-import com.barchart.feed.api.series.Span;
 import com.barchart.feed.api.series.network.NetworkObservable;
 import com.barchart.feed.api.series.network.Query;
 import com.barchart.feed.api.series.service.HistoricalResult;
